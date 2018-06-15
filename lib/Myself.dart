@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:homework/pages/chat_screen.dart';
 
+enum AppBarBehavior { normal, pinned, floating, snapping }
+
 const Color _kFlutterBlue = const Color(0xFF003D75);
 const double _kDemoItemHeight = 64.0;
 const Duration _kFrontLayerSwitchDuration = const Duration(milliseconds: 300);
@@ -10,32 +12,106 @@ const Duration _kFrontLayerSwitchDuration = const Duration(milliseconds: 300);
 final List<GalleryDemo> kAllGalleryDemos = _buildGalleryDemos();
 
 class Myself extends StatefulWidget {
-
   @override
   _MyselfState createState() => new _MyselfState();
-
 }
 
 class _MyselfState extends State<Myself> {
+  final double _appBarHeight = 256.0;
+  AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
 
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
       routes: _buildRoutes(),
 
-      home: ListView.builder(
-        itemCount: kAllGalleryDemos.length,
-        itemBuilder: (context, i) =>
-        new Column(
-          children: <Widget>[
-            new Divider(
-              height: 10.0,
+      home: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            leading: Icon(Icons.favorite),
+            expandedHeight: _appBarHeight,
+            pinned: _appBarBehavior == AppBarBehavior.pinned,
+            floating: _appBarBehavior == AppBarBehavior.floating ||
+                _appBarBehavior == AppBarBehavior.snapping,
+            snap: _appBarBehavior == AppBarBehavior.snapping,
+            flexibleSpace: FlexibleSpaceBar(
+              title: const Text(
+                '我的',
+                style: const TextStyle(color: Colors.red),
+              ),
+              background: Stack(
+                fit: StackFit.expand,
+                children: <Widget>[
+                  Image.asset(
+                    'images/TyrionLannister.jpeg',
+                    fit: BoxFit.cover,
+                    height: _appBarHeight,
+                  ),
+                  // This gradient ensures that the toolbar icons are distinct
+                  // against the background image.
+                  const DecoratedBox(
+                    decoration: const BoxDecoration(
+                      gradient: const LinearGradient(
+                        begin: const Alignment(0.0, -1.0),
+                        end: const Alignment(0.0, -0.4),
+                        colors: const <Color>[
+                          const Color(0x60000000),
+                          const Color(0x00000000)
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            _DemoItem(demo: kAllGalleryDemos[i]),
-          ],
-        ),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return Column(
+                  children: <Widget>[
+                    Divider(
+                      height: 10.0,
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.contacts, size: 36.0),
+                      title: Text(
+                        "爱探险的朵拉",
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                      subtitle: Text("微信号：23489729384720"),
+                      trailing: Icon(
+                        Icons.ac_unit,
+                        size: 96.0,
+                      ),
+                      onTap: () => showDialog(
+                          context: context,
+                          builder: (BuildContext context) =>
+                              Text("Show qrcode please")),
+                    ),
+                  ],
+                );
+              },
+              childCount: 1,
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return Column(
+                  children: <Widget>[
+                    Divider(
+                      height: 10.0,
+                    ),
+                    _DemoItem(demo: kAllGalleryDemos[index]),
+                  ],
+                );
+              },
+              childCount: kAllGalleryDemos.length,
+            ),
+          ),
+        ],
       ),
-
     );
   }
 
@@ -49,8 +125,6 @@ class _MyselfState extends State<Myself> {
       value: (dynamic demo) => demo.buildRoute,
     );
   }
-
-
 }
 
 List<GalleryDemo> _buildGalleryDemos() {

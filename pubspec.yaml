@@ -30,6 +30,7 @@ flutter:
   assets:
     - images/chuqiao.jpg
     - images/lake.jpg
+    - images/TyrionLannister.jpeg
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

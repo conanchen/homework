@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import '../models/contacts_model.dart';
 
+enum AppBarBehavior { normal, pinned, floating, snapping }
+
 class Contacts extends StatefulWidget {
   @override
   ContactsState createState() {
     return  ContactsState();
   }
 }
-
-enum AppBarBehavior { normal, pinned, floating, snapping }
 
 class ContactsState extends State<Contacts> {
   static final GlobalKey<ScaffoldState> _scaffoldKey =
