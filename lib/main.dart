@@ -16,11 +16,14 @@ class HomeworkApp extends StatelessWidget {
       title: 'Homework App',
 
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
         primaryColor: new Color(0xff075E54),                       //new
         accentColor: new Color(0xff25D366),                        //new
+        brightness: Brightness.light,
+        primarySwatch: Colors.indigo,
+        platform: Theme.of(context).platform,
       ),
       home: new MyHomePage(title: 'Home Page'),
+
     );
   }
 }

@@ -14,21 +14,16 @@ class ContactsState extends State<Contacts> {
   static final GlobalKey<ScaffoldState> _scaffoldKey =
       new GlobalKey<ScaffoldState>();
   final double _appBarHeight = 256.0;
-  AppBarBehavior _appBarBehavior = AppBarBehavior.normal;
+  AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
 
   @override
   Widget build(BuildContext context) {
-    return new Theme(
-      data: new ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.indigo,
-        platform: Theme.of(context).platform,
-      ),
-      child: new Scaffold(
+    return  Scaffold(
         key: _scaffoldKey,
         body: CustomScrollView(
           slivers: <Widget>[
             new SliverAppBar(
+
               leading: Icon(Icons.favorite),
               expandedHeight: _appBarHeight,
               pinned: _appBarBehavior == AppBarBehavior.pinned,
@@ -69,7 +64,8 @@ class ContactsState extends State<Contacts> {
                 ),
               ],
               flexibleSpace: new FlexibleSpaceBar(
-                title: const Text('Ali Connors'),
+
+                title: const Text('通讯录',style:const TextStyle(color: Colors.red),),
                 background: new Stack(
                   fit: StackFit.expand,
                   children: <Widget>[
@@ -99,8 +95,8 @@ class ContactsState extends State<Contacts> {
             SliverGrid(
               gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 7,
-                mainAxisSpacing: 1.0,
-                crossAxisSpacing: 3.0,
+                mainAxisSpacing: 2.0,
+                crossAxisSpacing: 2.0,
                 childAspectRatio: 1.0,
               ),
               delegate: new SliverChildBuilderDelegate(
@@ -139,7 +135,7 @@ class ContactsState extends State<Contacts> {
                             new Text(
                               dummyContactsData[index].time,
                               style: new TextStyle(
-                                  color: Colors.white, fontSize: 14.0),
+                                  color: Colors.grey, fontSize: 14.0),
                             ),
                           ],
                         ),
@@ -148,7 +144,7 @@ class ContactsState extends State<Contacts> {
                           child: new Text(
                             dummyContactsData[index].message,
                             style: new TextStyle(
-                                color: Colors.white, fontSize: 15.0),
+                                color: Colors.grey, fontSize: 15.0),
                           ),
                         ),
                       ),
@@ -160,7 +156,6 @@ class ContactsState extends State<Contacts> {
             ),
           ],
         ),
-      ),
     );
   }
 }

@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import '../models/chat_model.dart';
 
 class ChatScreen extends StatefulWidget {
+  const ChatScreen({Key key}) : super(key: key);
+
+  static const String routeName = '/chatscreen';
+
+
   @override
-  ChatScreenState createState() {
-    return new ChatScreenState();
-  }
+  ChatScreenState createState() => new ChatScreenState();
 }
 
 class ChatScreenState extends State<ChatScreen> {
