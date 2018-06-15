@@ -4,7 +4,7 @@ import '../models/contacts_model.dart';
 class Contacts extends StatefulWidget {
   @override
   ContactsState createState() {
-    return new ContactsState();
+    return  ContactsState();
   }
 }
 
@@ -12,7 +12,7 @@ enum AppBarBehavior { normal, pinned, floating, snapping }
 
 class ContactsState extends State<Contacts> {
   static final GlobalKey<ScaffoldState> _scaffoldKey =
-      new GlobalKey<ScaffoldState>();
+       GlobalKey<ScaffoldState>();
   final double _appBarHeight = 256.0;
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
 
@@ -22,7 +22,7 @@ class ContactsState extends State<Contacts> {
         key: _scaffoldKey,
         body: CustomScrollView(
           slivers: <Widget>[
-            new SliverAppBar(
+             SliverAppBar(
 
               leading: Icon(Icons.favorite),
               expandedHeight: _appBarHeight,
@@ -31,7 +31,7 @@ class ContactsState extends State<Contacts> {
                   _appBarBehavior == AppBarBehavior.snapping,
               snap: _appBarBehavior == AppBarBehavior.snapping,
               actions: <Widget>[
-                new IconButton(
+                 IconButton(
                   icon: const Icon(Icons.create),
                   tooltip: 'Edit',
                   onPressed: () {
@@ -40,7 +40,7 @@ class ContactsState extends State<Contacts> {
                             "Editing isn't supported in this screen.")));
                   },
                 ),
-                new PopupMenuButton<AppBarBehavior>(
+                 PopupMenuButton<AppBarBehavior>(
                   onSelected: (AppBarBehavior value) {
                     setState(() {
                       _appBarBehavior = value;
@@ -63,13 +63,13 @@ class ContactsState extends State<Contacts> {
                       ],
                 ),
               ],
-              flexibleSpace: new FlexibleSpaceBar(
+              flexibleSpace:  FlexibleSpaceBar(
 
                 title: const Text('通讯录',style:const TextStyle(color: Colors.red),),
-                background: new Stack(
+                background:  Stack(
                   fit: StackFit.expand,
                   children: <Widget>[
-                    new Image.asset(
+                     Image.asset(
                       'images/chuqiao.jpg',
                       fit: BoxFit.cover,
                       height: _appBarHeight,
@@ -93,18 +93,18 @@ class ContactsState extends State<Contacts> {
               ),
             ),
             SliverGrid(
-              gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 7,
                 mainAxisSpacing: 2.0,
                 crossAxisSpacing: 2.0,
                 childAspectRatio: 1.0,
               ),
-              delegate: new SliverChildBuilderDelegate(
+              delegate:  SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-                  return new Container(
+                  return  Container(
                     alignment: Alignment.center,
                     color: Colors.teal[100 * (index % 8 + 1)],
-                    child: new Text(dummyContactIndexData[index].shortcut),
+                    child:  Text(dummyContactIndexData[index].shortcut),
                   );
                 },
                 childCount: dummyContactIndexData.length,
@@ -113,41 +113,12 @@ class ContactsState extends State<Contacts> {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-                  return new Column(
+                  return  Column(
                     children: <Widget>[
-                      new Divider(
+                       Divider(
                         height: 10.0,
                       ),
-                      new ListTile(
-                        leading: new CircleAvatar(
-                          foregroundColor: Theme.of(context).primaryColor,
-                          backgroundColor: Colors.grey,
-                          backgroundImage: new NetworkImage(
-                              dummyContactsData[index].avatarUrl),
-                        ),
-                        title: new Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            new Text(
-                              dummyContactsData[index].name,
-                              style: new TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            new Text(
-                              dummyContactsData[index].time,
-                              style: new TextStyle(
-                                  color: Colors.grey, fontSize: 14.0),
-                            ),
-                          ],
-                        ),
-                        subtitle: new Container(
-                          padding: const EdgeInsets.only(top: 5.0),
-                          child: new Text(
-                            dummyContactsData[index].message,
-                            style: new TextStyle(
-                                color: Colors.grey, fontSize: 15.0),
-                          ),
-                        ),
-                      ),
+                      ContactListTile(dummyContactsData[index]),
                     ],
                   );
                 },
@@ -158,4 +129,35 @@ class ContactsState extends State<Contacts> {
         ),
     );
   }
+}
+
+
+class ContactListTile extends ListTile {
+  ContactListTile(ChatModel contact)
+      : super(
+    leading:  CircleAvatar(
+      backgroundColor: Colors.grey,
+      backgroundImage:  NetworkImage(contact.avatarUrl),
+    ),
+    title:  Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+         Text(
+          contact.name,
+          style:  TextStyle(fontWeight: FontWeight.bold),
+        ),
+         Text(
+          contact.time,
+          style:  TextStyle(color: Colors.grey, fontSize: 14.0),
+        ),
+      ],
+    ),
+    subtitle:  Container(
+      padding: const EdgeInsets.only(top: 5.0),
+      child:  Text(
+        contact.message,
+        style:  TextStyle(color: Colors.grey, fontSize: 15.0),
+      ),
+    ),
+  );
 }
