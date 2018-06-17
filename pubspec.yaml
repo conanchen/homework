@@ -9,6 +9,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   font_awesome_flutter: 6.0.0
+  # Also update dev/benchmarks/complex_layout/pubspec.yaml
+  flutter_gallery_assets: 0.1.4
 
 dev_dependencies:
   flutter_test:
@@ -31,6 +33,27 @@ flutter:
     - images/chuqiao.jpg
     - images/lake.jpg
     - images/TyrionLannister.jpeg
+    - packages/flutter_gallery_assets/food/image10.jpg
+    - packages/flutter_gallery_assets/food/image11.jpg
+    - packages/flutter_gallery_assets/food/image12.jpg
+    - packages/flutter_gallery_assets/food/image13.jpg
+    - packages/flutter_gallery_assets/food/image1.jpg
+    - packages/flutter_gallery_assets/food/image2.jpg
+    - packages/flutter_gallery_assets/food/image3.jpg
+    - packages/flutter_gallery_assets/food/image4.jpg
+    - packages/flutter_gallery_assets/food/image5.jpg
+    - packages/flutter_gallery_assets/food/image6.jpg
+    - packages/flutter_gallery_assets/food/image7.jpg
+    - packages/flutter_gallery_assets/food/image8.jpg
+    - packages/flutter_gallery_assets/food/image9.jpg
+    - packages/flutter_gallery_assets/food/icons/fish.png
+    - packages/flutter_gallery_assets/food/icons/healthy.png
+    - packages/flutter_gallery_assets/food/icons/main.png
+    - packages/flutter_gallery_assets/food/icons/meat.png
+    - packages/flutter_gallery_assets/food/icons/quick.png
+    - packages/flutter_gallery_assets/food/icons/spicy.png
+    - packages/flutter_gallery_assets/food/icons/veggie.png
+    - packages/flutter_gallery_assets/logos/pesto/logo_small.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

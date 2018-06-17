@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/contacts_model.dart';
+import '../../models/contacts_model.dart';
 
 enum AppBarBehavior { normal, pinned, floating, snapping }
 

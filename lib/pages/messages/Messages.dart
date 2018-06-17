@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import '../models/chat_model.dart';
+import '../../models/chat_model.dart';
 
-class Works extends StatefulWidget {
+class Messages extends StatefulWidget {
   @override
-  WorksState createState() {
-    return new WorksState();
+  MessagesState createState() {
+    return new MessagesState();
   }
 }
 
-class WorksState extends State<Works> {
+class MessagesState extends State<Messages> {
   @override
   Widget build(BuildContext context) {
     return new ListView.builder(

@@ -26,6 +26,7 @@ class _MyselfState extends State<Myself> {
       routes: _buildRoutes(),
 
       home: CustomScrollView(
+
         slivers: <Widget>[
           SliverAppBar(
             leading: Icon(Icons.favorite),
@@ -108,6 +109,19 @@ class _MyselfState extends State<Myself> {
                 );
               },
               childCount: kAllGalleryDemos.length,
+            ),
+          ),
+          SliverFixedExtentList(
+
+            itemExtent: 50.0,
+            delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                return Container(
+                  alignment: Alignment.center,
+                  color: Colors.lightBlue[100 * (index % 9)],
+                  child: Text('list item $index'),
+                );
+              },
             ),
           ),
         ],

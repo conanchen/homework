@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:homework/pages/Contacts.dart';
-import 'package:homework/pages/Discovery.dart';
-import 'package:homework/pages/Works.dart';
-import 'package:homework/pages/Messages.dart';
-import 'package:homework/Myself.dart';
+import 'package:homework/pages/contacts/Contacts.dart';
+import 'package:homework/pages/discovery/Discovery.dart';
+import 'package:homework/pages/works/Works.dart';
+import 'package:homework/pages/messages/Messages.dart';
+import 'package:homework/pages/myself/Myself.dart';
 import 'package:homework/pages/chat_screen.dart';
 
 void main() => runApp(new HomeworkApp());
